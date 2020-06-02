@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int numDigitSquareSum(int n){
+        int squareSum = 0;
+        while(n){
+            squareSum += ((n%10) * (n%10));
+            n /= 10;
+        }
+        return squareSum;
+    }
+    
+    bool isHappy(int n) {
+        int slow = n, fast = n;
+        do{
+            slow = numDigitSquareSum( slow );
+            fast = numDigitSquareSum( numDigitSquareSum(fast) );
+            
+            if (fast == 1)
+                return true;
+            
+        }while(slow != fast);
+        
+        return false;
+    }
+};
